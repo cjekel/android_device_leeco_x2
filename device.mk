@@ -48,7 +48,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapsize=512m \
     dalvik.vm.heaptargetutilization=0.75 \
     dalvik.vm.heapminfree=4m \
-    dalvik.vm.heapmaxfree=8m
+    dalvik.vm.heapmaxfree=16m
 
 # Fingerprint
 PRODUCT_PACKAGES += \
@@ -67,6 +67,18 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/sensors/hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/hals.conf \
     $(LOCAL_PATH)/sensors/sensor_def_qcomdev.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/sensor_def_qcomdev.conf
+
+
+# TFA calibration
+PRODUCT_PACKAGES += \
+    tinyplay
+
+# Thermal-engine
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
+
+# Vendor properties
+-include $(LOCAL_PATH)/vendor_prop.mk
 
 # msm8996-common
 $(call inherit-product, device/leeco/msm8996-common/msm8996.mk)
